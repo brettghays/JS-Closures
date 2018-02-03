@@ -236,7 +236,7 @@ function findPotentialFriends(existingFriends) {
       return true
     }
   }
-  let secondPotential = () => {
+  /* let secondPotential = () => {
     let filtered = secondLevelFriends.filter(x => x != 'Harry' )
     console.log(filtered)
   }
@@ -250,6 +250,8 @@ function findPotentialFriends(existingFriends) {
     checker: checker,
     secondPotential: secondPotential,
     allPotential: allPotential
+  } */
+  return checker
 }
 
 var isNotAFriend = findPotentialFriends( friends );
@@ -264,11 +266,11 @@ var isNotAFriend = findPotentialFriends( friends );
 method, find all potential second level friends as well as potential friends
 from allUsers. */
 
-var potentialSecondLevelFriends = findPotentialFriends();
-var allPotentialFriends = findPotentialFriends();
+var potentialSecondLevelFriends ="?" //findPotentialFriends();
+var allPotentialFriends ="?" //findPotentialFriends();
 
-potentialSecondLevelFriends.secondPotential()
-potentialSecondLevelFriends.allPotential()
+/* potentialSecondLevelFriends.secondPotential()
+potentialSecondLevelFriends.allPotential() */
 
 
 

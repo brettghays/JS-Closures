@@ -16,9 +16,12 @@ another variable called 'inner'. */
 
 // Code Here
 
+let inner = outer();
+
 //Once you do that, invoke inner.
 
 //Code Here
+inner("Brett");
 
 
 
@@ -48,6 +51,9 @@ in your console. */
 
   //Code Here
 
+  let callJake = callFriend('Jake');
+  callJake('435-555-9248')
+
 
 
 
@@ -66,12 +72,23 @@ properly. */
 
 //Code Here
 
+let makeCounter = () => {
+  let counter = 0;
+  let increment = () => {
+    counter ++;
+    console.log(counter)
+    return counter
+  }
+  return increment;
+}
+
+
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -99,9 +116,20 @@ http://stackoverflow.com/questions/17776940/javascript-module-pattern-with-examp
 function counterFactory(value) {
 
   // Code here.
+  let inc = () => {
+    value++;
+    return value;
+  };
+
+  let dec = () => {
+    value--;
+    return value;
+  }
 
 
   return {
+    inc: inc,
+    dec: dec
   }
 }
 
@@ -134,10 +162,13 @@ function motivation(firstname, lastname) {
   var welcomeText = 'You\'re doing awesome, keep it up ';
 
   // code message function here.
+  let message = () => {
+    return welcomeText + firstname + " " + lastname + "."
+  }
 
 
   //Uncommment this to return the value of your invoked message function
-  //return message();
+  return message();
 
 }
 
@@ -176,9 +207,12 @@ var module = (function() {
   // outside our lexical scope
   return {
     // Code here.
+    publicMethod: privateMethod
   };
 
 })();
+
+module.publicMethod();
 
 
 
@@ -195,12 +229,32 @@ var secondLevelFriends = ["Anne", "Harry", "Quinton"];
 var allUsers = ["Tom", "Dick", "Harry", "Anne", "Quinton", "Katie", "Mary"];
 
 function findPotentialFriends(existingFriends) {
+  let checker = (person) => {
+    if (existingFriends.find(x => x == person)){
+      return false
+    } else {
+      return true
+    }
+  }
+  let secondPotential = () => {
+    let filtered = secondLevelFriends.filter(x => x != 'Harry' )
+    console.log(filtered)
+  }
 
+  let allPotential = () => {
+    let allFiltered = allUsers.filter(x => !friends.includes(x))
+    console.log(allFiltered)
+  }
+
+  return {
+    checker: checker,
+    secondPotential: secondPotential,
+    allPotential: allPotential
 }
 
 var isNotAFriend = findPotentialFriends( friends );
-// isNotAFriend(allUsers[0]); // false
-// isNotAFriend(secondLevelFriends[2]); // true
+ isNotAFriend.checker(allUsers[0]); // false
+ isNotAFriend.checker(secondLevelFriends[2]); // true
 
 
 /******************************************************************************\
@@ -210,8 +264,12 @@ var isNotAFriend = findPotentialFriends( friends );
 method, find all potential second level friends as well as potential friends
 from allUsers. */
 
-var potentialSecondLevelFriends = "?";
-var allPotentialFriends = "?";
+var potentialSecondLevelFriends = findPotentialFriends();
+var allPotentialFriends = findPotentialFriends();
+
+potentialSecondLevelFriends.secondPotential()
+potentialSecondLevelFriends.allPotential()
+
 
 
 /******************************************************************************\
@@ -235,10 +293,14 @@ to 5. What we need to do is console.log(i) so that it logs like so:
  */
 
 function timeOutCounter() {
-  for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-    	console.log(i)
-	}, i * 1000)
+  let countdown = () => {
+    for (var i = 0; i <= 5; i++) {
+      setTimeout(function() {
+        console.log(i)
+    }, i * 1000)
+    }
+    return countdown;
   }
+  
 }
-timeOutCounter();
+let start = timeOutCounter();
